@@ -28,7 +28,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.CR_PAT }}
 
-      # - name: Tag the Image
+      ## - name: Tag the Image
       #   run: docker image tag whoami:latest ghcr.io/eastmon94/whoami:$version
 
       # - name: push to Github Conatiner Registry
