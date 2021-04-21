@@ -17,19 +17,16 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify
-
-      - name: version
-        run: export version=$(date +%s)
       
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag whoami:$version
+        run: docker build . --file Dockerfile --tag whoami:$(date +%s)
 
-      # - name: Login to GitHub Container Registry
-      #   uses: docker/login-action@v1
-      #   with:
-      #     registry: ghcr.io
-      #     username: ${{ github.repository_owner }}
-      #     password: ${{ secrets.CR_PAT }}
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
 
       # - name: Tag the Image
       #   run: docker image tag whoami:latest ghcr.io/eastmon94/whoami:$version
