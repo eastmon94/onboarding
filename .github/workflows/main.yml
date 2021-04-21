@@ -19,4 +19,15 @@ jobs:
         run: mvn --batch-mode --update-snapshots verify
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag whoami:$(date +%s)
+        run: docker build . --file Dockerfile --tag whoami
+
+      - name: Authentication with PAT
+        run: cat ./token.txt | docker login ghcr.io -u eastmon94 --paassword-stdin
+
+      - name: Tag the Image
+        run:
+          export version=$(date +%s)
+          docker image tag whoami:latest ghcr.io/eastmon94/whoami:$version
+
+      - name: push to Github Conatiner Registry
+        run : docker image push ghcr.io/eastmon94/eastmon94/whoami:$version
