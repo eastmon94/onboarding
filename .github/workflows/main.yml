@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      VERSION: $(date +%s)
+      VERSION: ${{ date +%s }}
     
     steps:
       - uses: actions/checkout@v2
