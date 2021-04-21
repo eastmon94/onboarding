@@ -32,4 +32,4 @@ jobs:
         run: docker image tag whoami:latest ghcr.io/eastmon94/whoami
 
       - name: push to Github Conatiner Registry
-        run : docker push ghcr.io/eastmon94/eastmon94/whoami
+        run : docker push ghcr.io/eastmon94/whoami
