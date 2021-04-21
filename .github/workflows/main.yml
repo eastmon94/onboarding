@@ -23,10 +23,12 @@ jobs:
           export version=$(date +%s)
           docker build . --file Dockerfile --tag whoami:$version
 
-      - name: Authentication with PAT
-        run: 
-          export token=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
-          echo $token | docker login ghcr.io -u eastmon94 --password-stdin
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Tag the Image
         run: docker image tag whoami:latest ghcr.io/eastmon94/whoami:$version
