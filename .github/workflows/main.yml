@@ -22,7 +22,7 @@ jobs:
         run: mvn --batch-mode --update-snapshots verify
       
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag whoami:$version
+        run: docker build . --file Dockerfile --tag whoami:${version}
         env:
           version: ${{ env.VERSION }}
 
