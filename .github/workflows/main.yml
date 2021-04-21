@@ -24,7 +24,9 @@ jobs:
           docker build . --file Dockerfile --tag whoami:$version
 
       - name: Authentication with PAT
-        run: cat ./token.txt | docker login ghcr.io -u eastmon94 --password-stdin
+        run: 
+          export token=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
+          echo $token | docker login ghcr.io -u eastmon94 --password-stdin
 
       - name: Tag the Image
         run: docker image tag whoami:latest ghcr.io/eastmon94/whoami:$version
