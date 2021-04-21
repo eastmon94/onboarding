@@ -18,10 +18,10 @@ jobs:
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify
 
-      # - name: Build the Docker image
-      #   run: 
-      #     export version=$(date +%s)
-      #     docker build . --file Dockerfile --tag whoami:$version
+      - name: Build the Docker image
+        run: 
+          export version=$(date +%s)
+          docker build . --file Dockerfile --tag whoami:$version
 
       # - name: Login to GitHub Container Registry
       #   uses: docker/login-action@v1
