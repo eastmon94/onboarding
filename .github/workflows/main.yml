@@ -49,10 +49,16 @@ jobs:
       - name: change file
         run : yq w ./helmChart/templates/deployment.yaml "spec.template.spec.containers[0].image" "ghcr.io/${{ github.repository_owner }}/whoami:${{ github.sha }}"
 
+      - name: git config
+        env:
+          USER_NAME: ${{ github.event.pusher.name }}
+          USER_EMAIL: ${{ github.event.pusher.email }}
+        run: |
+          git config --global user.email "$USER_EMAIL"
+          git config --global user.name "$USER_NAME"
+      
       - name: git push
         run: |
         git add .
-        git config --local user.name "Kim Donghyun"
-        git config --local user.email "eastmon94@naver.com"
         git commit -m "update"
         git push
