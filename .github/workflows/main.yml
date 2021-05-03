@@ -46,10 +46,11 @@ jobs:
       - name: config env
         run: snap install yq
 
-      
-      - name: commit
+      - name: change file
+        run : yq w ./helmChart/templates/deployment.yaml "spec.template.spec.containers[0].image" "ghcr.io/${{ github.repository_owner }}/whoami:${{ github.sha }}"
+
+      - name: git push
         run: |
-        yq w ./helmChart/templates/deployment.yaml "spec.template.spec.containers[0].image" "ghcr.io/${{ github.repository_owner }}/whoami:${{ github.sha }}"
         git add .
         git config --local user.name "Kim Donghyun"
         git config --local user.email "eastmon94@naver.com"
