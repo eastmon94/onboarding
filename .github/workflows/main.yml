@@ -56,8 +56,8 @@ jobs:
           git config --global user.email "$USER_EMAIL"
           git config --global user.name "$USER_NAME"
       
-      - name: push changed files
-        run: |
-        git add .
-        git commit -m "whoami update"
-        git push
+      # - name: push changed files
+      #   run: |
+      #   git add .
+      #   git commit -m "whoami update"
+      #   git push
