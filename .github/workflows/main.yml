@@ -55,4 +55,4 @@ jobs:
         git config --local user.name "Kim Donghyun"
         git config --local user.email "eastmon94@naver.com"
         git commit -m "update"
-        git push origin master
+        git push
