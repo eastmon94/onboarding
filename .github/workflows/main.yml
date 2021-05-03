@@ -43,7 +43,7 @@ jobs:
           path: .
         
       - name: config env
-        run: snap install yq
+        run: sudo snap install yq
 
       - name: change file
         run : yq w ./helmChart/templates/deployment.yaml "spec.template.spec.containers[0].image" "ghcr.io/${{ github.repository_owner }}/whoami:${{ github.sha }}"
