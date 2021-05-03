@@ -50,8 +50,8 @@ jobs:
       - name: commit
         run: |
         yq w ./argocd/helmChart/templates/deployment.yaml "spec.template.spec.containers[0].image" "ghcr.io/${{ github.repository_owner }}/whoami:${{ github.sha }}"
-        git config user.name "Kim Donghyun"
-        git config user.email "eastmon94@naver.com"
+        git config --local user.name "Kim Donghyun"
+        git config --local user.email "eastmon94@naver.com"
         git add .
         git commit -m "update"
         git push origin master
