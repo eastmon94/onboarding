@@ -46,7 +46,7 @@ jobs:
         run: sudo snap install yq
 
       - name: change file
-        run : yq e '.spec.template.spec.containers[0].image = "ghcr.io/${{ github.repository_owner }}/whoami:${{ github.sha }}"' ./helmChart/templates/deployment.yaml
+        run : yq e '.spec.template.spec.containers[0].image = "ghcr.io/${{ github.repository_owner }}/whoami:${{ github.sha }}"' -i ./helmChart/templates/deployment.yaml
 
       - name: git config
         env:
@@ -55,12 +55,12 @@ jobs:
         run: |
           git config --global user.email "$USER_EMAIL"
           git config --global user.name "$USER_NAME"
-      
+
       - name: git add
         run: git add --all
 
       - name: git commit
         run: git commit -m "whoami update"
-        
+
       - name: git push
         run: git push origin master
