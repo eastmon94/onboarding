@@ -35,16 +35,17 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: config env
-        run: |
-        snap install yq
-
       - name: Checkout another project
         uses: actions/checkout@master
         with: 
           repository: eastmon94/argocd
           token: ${{ secrets.API_TOKEN_GITHUB }}
           path: .
+
+        
+      - name: config env
+        run: snap install yq
+
       
       - name: commit
         run: |
