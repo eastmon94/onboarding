@@ -30,3 +30,28 @@ jobs:
 
       - name: push to Github Conatiner Registry
         run : docker image push ghcr.io/${{ github.repository_owner }}/whoami:${{ github.sha }}
+
+  deployment:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: config env
+        run: |
+        sudo apd-apt-repository ppa:rmescandon/yq
+        sudo apt-get install yq
+
+      - name: Checkout another project
+        uses: actions/checkout@master
+        with: 
+          repository: eastmon94/argocd
+          token: ${{ secrets.API_TOKEN_GITHUB }}
+          path: .
+      
+      - name: commit
+        run: |
+        yq w ./argocd/helmChart/templates/deployment.yaml "spec.template.spec.containers[0].image" "ghcr.io/${{ github.repository_owner }}/whoami:${{ github.sha }}"
+        git config user.name "Kim Donghyun"
+        git config user.email "eastmon94@naver.com"
+        git add .
+        git commit -m "update"
+        git push origin master
