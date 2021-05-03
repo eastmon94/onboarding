@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+    spring-boot:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: whoami
+        ports:
+            - "8081:8081"
+        container_name: whoami
+        depends_on:
+            - mysql
+
+    mysql:
+        image: mysql:5.7
+        volumes:
+            - mysql-data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: 1q2w3e4r
+            MYSQL_DATABASE: ssafy
+        ports:
+            - "3306:3306"
+        container_name: whoami-mysql
+
+volumes:
+    mysql-data:

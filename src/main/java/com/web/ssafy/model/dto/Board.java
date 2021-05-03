@@ -15,7 +15,7 @@ public class Board {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @Column(columnDefinition = "LocalDateTime default CURRENT_TIME()", insertable = false)
+    @Column(columnDefinition = "TIMESTAMP default NOW()", insertable = false)
     LocalDateTime time;
 
     String title;
