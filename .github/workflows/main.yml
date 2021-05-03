@@ -63,6 +63,6 @@ jobs:
         with:
           source-directory: '.'
           destination-github-username: 'eastmon94'
-          destination-repository-name: '.'
+          destination-repository-name: 'argocd'
           user-email: eastmon94@naver.com
           target-branch: master
