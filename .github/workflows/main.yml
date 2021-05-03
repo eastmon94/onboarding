@@ -39,9 +39,8 @@ jobs:
         uses: actions/checkout@master
         with: 
           repository: eastmon94/argocd
-          token: ${{ secrets.API_TOKEN_GITHUB }}
+          # token: ${{ secrets.API_TOKEN_GITHUB }}
           path: .
-
         
       - name: config env
         run: snap install yq
@@ -57,8 +56,8 @@ jobs:
           git config --global user.email "$USER_EMAIL"
           git config --global user.name "$USER_NAME"
       
-      # - name: git push
-      #   run: |
-      #   git add .
-      #   git commit -m "update"
-      #   git push
+      - name: push changed files
+        run: |
+        git add .
+        git commit -m "whoami update"
+        git push
