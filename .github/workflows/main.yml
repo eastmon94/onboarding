@@ -35,10 +35,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      # - name: config env
-      #   run: |
-      #   sudo apd-apt-repository ppa:rmescandon/yq
-      #   sudo apt-get install yq
+      - name: config env
+        run: |
+        snap install yq
 
       - name: Checkout another project
         uses: actions/checkout@master
