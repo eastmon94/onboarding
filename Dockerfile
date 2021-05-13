@@ -18,4 +18,3 @@ ADD ${JAR_FILE} whoami-springboot.jar
 
 # Run the jar file
 ENTRYPOINT ["java","-jar","/whoami-springboot.jar"]
-#
